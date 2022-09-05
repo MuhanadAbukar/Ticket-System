@@ -1,66 +1,88 @@
-﻿body {
+﻿.Header {
+    margin-left: 35%;
+    text-align: center;
+    border: 1px solid gray;
+    padding: 16px 28px;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 2px solid black;
+}
+.Header3 {
+    margin-left: 43%;
+    text-align: center;
+    border: 1px solid gray;
+    padding: 16px 28px;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 2px solid black;
+}
+.Header2 {
+    margin-left: 42%;
+    text-align: center;
+    border: 1px solid gray;
+    padding: 12px;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 2px solid black;
+}
+.button5 {
+    margin-left: 43%;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 1px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-form {
-    border: 3px solid #f1f1f1;
-}
-.hello{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-.hi {
-    background-color: #04AA6D;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-    .hi:hover {
-        opacity: 0.8;
+    .button5:hover {
+        background-color: black;
+        color: white;
     }
 
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
 }
 
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
+li {
+    float: left;
+    border-right: 1px solid #bbb;
 }
 
-img.avatar {
-    width: 10%;
-    border-radius: 50%;
-}
+    li:last-child {
+        border-right: none;
+    }
 
-.container {
-    padding: 16px;
-}
-
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
+    li a {
         display: block;
-        float: none;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
     }
 
-    .cancelbtn {
-        width: 100%;
-    }
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+.active {
+    background-color: #04AA6D;
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Webform.aspx.cs" Inherits="Ticket_System_Real.Webform" %>
+﻿ <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Webform.aspx.cs" Inherits="Ticket_System_Real.Webform" %>
 
 <!DOCTYPE html>
 
@@ -7,10 +7,14 @@
     <title></title>
 </head>
 <body>
+         <link rel="stylesheet" href="style.css"/>
+       
+<ul>
+  <li><a class="active" href="Webform.aspx">Create ticket</a></li>
+  <li><a  href="ticketStatus.aspx">View ticket status</a></li>
+</ul>
     <form id="form1" runat="server">
-        <div>
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-        </div>
+       
             <p>Full navn:</p>
             <asp:TextBox ID="TicketAuthor" runat="server"></asp:TextBox>
             <br />

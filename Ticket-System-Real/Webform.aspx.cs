@@ -12,22 +12,7 @@ namespace Ticket_System_Real
     public partial class Webform : System.Web.UI.Page
     {
         string connectionString = ConfigurationManager.ConnectionStrings["connstr"].ConnectionString;
-        protected string GetIPAddress()
-        {
-            System.Web.HttpContext context = System.Web.HttpContext.Current;
-            string ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-
-            if (!string.IsNullOrEmpty(ipAddress))
-            {
-                string[] addresses = ipAddress.Split(',');
-                if (addresses.Length != 0)
-                {
-                    return addresses[0];
-                }
-            }
-
-            return context.Request.ServerVariables["REMOTE_ADDR"];
-        }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -42,8 +27,8 @@ namespace Ticket_System_Real
             var exec = cmd.ExecuteReader();
             exec.Read();
             ticketnr = int.Parse(exec[0].ToString()) + 1;
+            exec.Close();
             conn.Close();
-            conn.Open();
             var description = TicketDescription.Text;
             if(description.Length == 0)
             {
@@ -52,10 +37,13 @@ namespace Ticket_System_Real
             }
 
             var author = TicketAuthor.Text;
-            
+            conn.Open();
             var cmd2 = new SqlCommand("insert into ticket values(" + ticketnr + ",'" + description + "','" + TicketType.SelectedItem.Text+"','"+ DateTime.Now.ToString("dd/MM/yy") + "','"+author+"',0)", conn); ;
             cmd2.ExecuteNonQuery();
             conn.Close();
+            Response.Redirect("redirectWhenCreated.aspx?TicketNR="+ticketnr.ToString());
+
+
         }
     }
 }

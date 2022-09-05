@@ -67,20 +67,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Login.aspx" />
+    <Content Include="redirectWhenCreated.aspx" />
     <Content Include="style.css" />
+    <Content Include="ticketStatus.aspx" />
     <Content Include="Web.config" />
     <Content Include="Webform.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="redirectWhenCreated.aspx.cs">
+      <DependentUpon>redirectWhenCreated.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="redirectWhenCreated.aspx.designer.cs">
+      <DependentUpon>redirectWhenCreated.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ticketStatus.aspx.cs">
+      <DependentUpon>ticketStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticketStatus.aspx.designer.cs">
+      <DependentUpon>ticketStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Webform.aspx.cs">
       <DependentUpon>Webform.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
