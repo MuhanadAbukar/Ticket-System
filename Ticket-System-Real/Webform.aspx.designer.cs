@@ -33,6 +33,15 @@ namespace Ticket_System_Real
         protected global::System.Web.UI.WebControls.TextBox TicketAuthor;
 
         /// <summary>
+        /// TicketEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TicketEmail;
+
+        /// <summary>
         /// TicketDescription control.
         /// </summary>
         /// <remarks>

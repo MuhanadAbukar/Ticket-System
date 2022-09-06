@@ -28,25 +28,38 @@ namespace Ticket_System_Real
             try
             {
                 
-                var cmd = new SqlCommand("select * from ticket where ticketnr=" + ticketIDTextBox.Text, conn);
+                var cmd = new SqlCommand("select * from ticket where ticketnr='" + ticketIDTextBox.Text+"'", conn);
                 var reader = cmd.ExecuteReader();
                 var dt = new DataTable();
                 dt.Load(reader);
-                reader.Close();
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 if (GridView1.Rows.Count == 0)
                 {
 
-                    Label1.Text = "hi";
                     Button1.Text = "Invalid ticket ID.";
                     return;
                 }
                 Button1.Text = "Check ticket status";
+                Description.Text = GridView1.Rows[0].Cells[1].Text;
+                var status = GridView1.Rows[0].Cells[5].Text;
+                Date.Text = GridView1.Rows[0].Cells[3].Text;
+                Author.Text = GridView1.Rows[0].Cells[4].Text;
+                if(status == "0")
+                {
+                    Status.Text = "Ikke startet";
+                }
+                else if(status == "1")
+                {
+                    Status.Text = "Startet å jobbe med den";
+                }
+                else if(status == "2")
+                {
+                    Status.Text = "Fikset";
+                }
             }
             catch (Exception)
             {
-                Label1.Text = "hi";
                 Button1.Text = "Invalid ticket ID.";
             }
             

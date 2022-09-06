@@ -18,6 +18,9 @@
             <p>Full navn:</p>
             <asp:TextBox ID="TicketAuthor" runat="server"></asp:TextBox>
             <br />
+        <p>Epost:</p>
+            <asp:TextBox ID="TicketEmail" runat="server"></asp:TextBox>
+            <br />
             <p>Beskrivelse av feilen</p>
             <asp:TextBox ID="TicketDescription" runat="server" Height="173px" Width="345px" TextMode="MultiLine"></asp:TextBox>
             <br />

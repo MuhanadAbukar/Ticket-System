@@ -23,10 +23,9 @@
         <p>Status: <asp:Label ID="Status" runat="server" Text=""></asp:Label></p>
         <p>Description: <asp:Label ID="Description" runat="server" Text=""></asp:Label></p>
 
-        <asp:GridView ID="GridView1" Visible="true" runat="server">
+        <asp:GridView ID="GridView1" Visible="false" runat="server">
         </asp:GridView>
         <br />
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     </form>
 </body>
 </html>
