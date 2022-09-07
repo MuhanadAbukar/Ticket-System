@@ -97,6 +97,7 @@
     <Content Include="redirectWhenCreated.aspx" />
     <Content Include="style.css" />
     <Content Include="ticketStatus.aspx" />
+    <Content Include="updateTickets.aspx" />
     <Content Include="Web.config" />
     <Content Include="Webform.aspx" />
   </ItemGroup>
@@ -115,6 +116,13 @@
     </Compile>
     <Compile Include="ticketStatus.aspx.designer.cs">
       <DependentUpon>ticketStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="updateTickets.aspx.cs">
+      <DependentUpon>updateTickets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="updateTickets.aspx.designer.cs">
+      <DependentUpon>updateTickets.aspx</DependentUpon>
     </Compile>
     <Compile Include="Webform.aspx.cs">
       <DependentUpon>Webform.aspx</DependentUpon>

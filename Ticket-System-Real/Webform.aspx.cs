@@ -15,8 +15,8 @@ namespace Ticket_System_Real
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("glemmenvgsticket@gmail.com"));
             email.To.Add(MailboxAddress.Parse(toEmail));
-            email.Subject = "Your support ticket";
-            email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = "<h1> Thanks for making a support ticket. Your ticket id is: "+ticketID+" </h1>" };
+            email.Subject = "Support ticket "+ticketID;
+            email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = "<h1> Thank you for creating a ticket, your ticket ID is: " + ticketID+" </h1>" };
             var smtp = new SmtpClient();
             smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
             smtp.Authenticate("glemmenvgsticket@gmail.com", "fmaonjofxuftpopf");
@@ -38,10 +38,10 @@ namespace Ticket_System_Real
                 return;
             }
             var ticketnr = "";
-            var w = new List<string>();
-            w.Add("1234567890");
-            w.Add("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-            w.Add("abcdefghijklmnopqrstuvwxyz");
+            var ticketGenerator = new List<string>();
+            ticketGenerator.Add("1234567890");
+            ticketGenerator.Add("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+            ticketGenerator.Add("abcdefghijklmnopqrstuvwxyz");
             var len = 9;
             var r = new Random();
             var ut = "";
@@ -49,7 +49,7 @@ namespace Ticket_System_Real
             {
                 try
                 {
-                    var chosen = w.ToArray()[r.Next(0, w.Count)];
+                    var chosen = ticketGenerator.ToArray()[r.Next(0, ticketGenerator.Count)];
                     ut += chosen[r.Next(0, chosen.Length)];
                 }
                 catch (Exception) { };
@@ -65,8 +65,28 @@ namespace Ticket_System_Real
             sendTicketEmail(TicketEmail.Text, ticketnr);
             var author = TicketAuthor.Text;
             conn.Open();
-            var cmd2 = new SqlCommand("insert into ticket values('" + ticketnr + "','" + description + "','" + TicketType.SelectedItem.Text + "','" + DateTime.Now.ToString("dd/MM/yy") + "','" + author + "',0)", conn); ;
-            cmd2.ExecuteNonQuery();
+            try
+            {
+                var cmd2 = new SqlCommand("insert into ticket values('" + ticketnr + "','" + description + "','" + TicketType.SelectedItem.Text + "','" + DateTime.Now.ToString("dd/MM/yy") + "','" + author + "',0)", conn); ;
+                cmd2.ExecuteNonQuery();
+                
+            }
+            catch(Exception)
+            {
+                var ut2 = "";
+                for (int i = 0; i < len; i++)
+                {
+                    try
+                    {
+                        var chosen = ticketGenerator.ToArray()[r.Next(0, ticketGenerator.Count)];
+                        ut2 += chosen[r.Next(0, chosen.Length)];
+                    }
+                    catch (Exception) { };
+                }
+                var cmd2 = new SqlCommand("insert into ticket values('" + ut2 + "','" + description + "','" + TicketType.SelectedItem.Text + "','" + DateTime.Now.ToString("dd/MM/yy") + "','" + author + "',0)", conn); ;
+                cmd2.ExecuteNonQuery();
+            }
+           
             conn.Close();
             Response.Redirect("redirectWhenCreated.aspx?TicketNR=" + ticketnr.ToString());
 
