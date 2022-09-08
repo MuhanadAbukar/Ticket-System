@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Net.Sockets;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Ticket_System_Real
 {
@@ -27,8 +21,8 @@ namespace Ticket_System_Real
             conn.Open();
             try
             {
-                
-                var cmd = new SqlCommand("select * from ticket where ticketnr='" + ticketIDTextBox.Text+"'", conn);
+
+                var cmd = new SqlCommand("select * from ticket where ticketnr='" + ticketIDTextBox.Text + "'", conn);
                 var reader = cmd.ExecuteReader();
                 var dt = new DataTable();
                 dt.Load(reader);
@@ -45,15 +39,15 @@ namespace Ticket_System_Real
                 var status = GridView1.Rows[0].Cells[5].Text;
                 Date.Text = GridView1.Rows[0].Cells[3].Text;
                 Author.Text = GridView1.Rows[0].Cells[4].Text;
-                if(status == "0")
+                if (status == "0")
                 {
                     Status.Text = "Ikke startet";
                 }
-                else if(status == "1")
+                else if (status == "1")
                 {
                     Status.Text = "Startet å jobbe med den";
                 }
-                else if(status == "2")
+                else if (status == "2")
                 {
                     Status.Text = "Fikset";
                 }
@@ -62,8 +56,8 @@ namespace Ticket_System_Real
             {
                 Button1.Text = "Invalid ticket ID.";
             }
-            
-            
+
+
         }
     }
 }

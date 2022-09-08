@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Ticket_System_Real
 {
@@ -13,11 +8,11 @@ namespace Ticket_System_Real
         {
             try
             {
-                Ticketnr.Text = "Thank you for creating a ticket, your ticket ID is: "+Request.QueryString["TicketNR"].ToString();
+                Ticketnr.Text = "Thank you for creating a ticket, your ticket ID is: " + Request.QueryString["TicketNR"].ToString();
             }
-            catch(Exception) { Ticketnr.Text = "No ticket created recently"; }
+            catch (Exception) { Ticketnr.Text = "No ticket created recently"; }
         }
-        
+
 
     }
 }

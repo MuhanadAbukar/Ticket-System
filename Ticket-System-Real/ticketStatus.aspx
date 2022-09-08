@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Check your ticket status</title>
 </head>
 <body>
     <link rel="stylesheet" href="style.css"/>

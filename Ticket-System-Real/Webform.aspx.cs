@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.ComponentModel.DataAnnotations;
-using MailKit.Net.Smtp;
+﻿using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.Data.SqlClient;
 namespace Ticket_System_Real
 {
     public partial class Webform : System.Web.UI.Page
     {
-        void sendTicketEmail(string toEmail,string ticketID)
+        void sendTicketEmail(string toEmail, string ticketID)
         {
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("glemmenvgsticket@gmail.com"));
             email.To.Add(MailboxAddress.Parse(toEmail));
-            email.Subject = "Support ticket "+ticketID;
-            email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = "<h1> Thank you for creating a ticket, your ticket ID is: " + ticketID+" </h1>" };
+            email.Subject = "Support ticket " + ticketID;
+            email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = "<h1> Thank you for creating a ticket, your ticket ID is: " + ticketID + " </h1>" };
             var smtp = new SmtpClient();
             smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
             smtp.Authenticate("glemmenvgsticket@gmail.com", "fmaonjofxuftpopf");
@@ -32,7 +32,7 @@ namespace Ticket_System_Real
         protected void Button1_Click(object sender, EventArgs e)
         {
             var validator = new EmailAddressAttribute();
-            if(TicketEmail.Text.Length == 0 || !validator.IsValid(TicketEmail.Text))
+            if (TicketEmail.Text.Length == 0 || !validator.IsValid(TicketEmail.Text))
             {
                 TicketEmail.Text = "Invalid email";
                 return;
@@ -64,14 +64,15 @@ namespace Ticket_System_Real
             }
             sendTicketEmail(TicketEmail.Text, ticketnr);
             var author = TicketAuthor.Text;
+            var email = TicketEmail.Text;
             conn.Open();
             try
             {
-                var cmd2 = new SqlCommand("insert into ticket values('" + ticketnr + "','" + description + "','" + TicketType.SelectedItem.Text + "','" + DateTime.Now.ToString("dd/MM/yy") + "','" + author + "',0)", conn); ;
+                var cmd2 = new SqlCommand("insert into ticket values('" + ticketnr + "','" + description + "','" + TicketType.SelectedItem.Text + "','" + DateTime.Now.ToString("dd/MM/yy") + "','" + author + "','"+email+"',0)", conn); ;
                 cmd2.ExecuteNonQuery();
-                
+
             }
-            catch(Exception)
+            catch (Exception)
             {
                 var ut2 = "";
                 for (int i = 0; i < len; i++)
@@ -86,7 +87,7 @@ namespace Ticket_System_Real
                 var cmd2 = new SqlCommand("insert into ticket values('" + ut2 + "','" + description + "','" + TicketType.SelectedItem.Text + "','" + DateTime.Now.ToString("dd/MM/yy") + "','" + author + "',0)", conn); ;
                 cmd2.ExecuteNonQuery();
             }
-           
+
             conn.Close();
             Response.Redirect("redirectWhenCreated.aspx?TicketNR=" + ticketnr.ToString());
 
