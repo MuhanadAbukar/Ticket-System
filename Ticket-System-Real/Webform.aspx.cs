@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Web.UI;
+
 namespace Ticket_System_Real
 {
     public partial class Webform : System.Web.UI.Page
@@ -31,8 +33,13 @@ namespace Ticket_System_Real
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            if(TicketDescription.Text.Length > 1000)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "", "alert('Description is too long, please shorten it')", true);
+                return;
+            }
             var validator = new EmailAddressAttribute();
-            if (TicketEmail.Text.Length == 0 || !validator.IsValid(TicketEmail.Text))
+            if (!validator.IsValid(TicketEmail.Text))
             {
                 TicketEmail.Text = "Invalid email";
                 return;
@@ -44,17 +51,17 @@ namespace Ticket_System_Real
             ticketGenerator.Add("abcdefghijklmnopqrstuvwxyz");
             var len = 9;
             var r = new Random();
-            var ut = "";
+            var generatedTicket = "";
             for (int i = 0; i < len; i++)
             {
                 try
                 {
                     var chosen = ticketGenerator.ToArray()[r.Next(0, ticketGenerator.Count)];
-                    ut += chosen[r.Next(0, chosen.Length)];
+                    generatedTicket += chosen[r.Next(0, chosen.Length)];
                 }
                 catch (Exception) { };
             }
-            ticketnr = ut;
+            ticketnr = generatedTicket;
             SqlConnection conn = new SqlConnection(connectionString);
             var description = TicketDescription.Text;
             if (description.Length == 0)
@@ -92,6 +99,11 @@ namespace Ticket_System_Real
             Response.Redirect("redirectWhenCreated.aspx?TicketNR=" + ticketnr.ToString());
 
 
+        }
+
+        protected void TicketDescription_TextChanged(object sender, EventArgs e)
+        {
+            Label1.Text = TicketDescription.Text.Length + "/1000";
         }
     }
 }

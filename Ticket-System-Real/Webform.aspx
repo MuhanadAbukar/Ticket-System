@@ -22,11 +22,12 @@
             <asp:TextBox ID="TicketEmail" runat="server"></asp:TextBox>
             <br />
             <p>Beskrivelse av feilen</p>
-            <asp:TextBox ID="TicketDescription" runat="server" Height="173px" Width="345px" TextMode="MultiLine"></asp:TextBox>
+            <asp:TextBox ID="TicketDescription" runat="server" Height="173px" Width="345px" TextMode="MultiLine" onKeyPress="javascript:text_changed();" AutoPostBack="True"></asp:TextBox>
+            <asp:Label ID="Label1" runat="server"></asp:Label>
             <br />
             <p>Type problem</p>
             <asp:DropDownList ID="TicketType" runat="server">
-                     <asp:ListItem Text="Server" Value="0" />
+                <asp:ListItem Text="Server" Value="0" />
                 <asp:ListItem Text="Internet" Value="1" />
                 <asp:ListItem Text="Office" Value="2" />
                 <asp:ListItem Text="PC" Value="3" />
