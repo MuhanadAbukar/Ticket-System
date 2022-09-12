@@ -14,7 +14,7 @@
   <li><a href="Webform.aspx">Create ticket</a></li>
   <li><a class="active"  href="ticketStatus.aspx">View ticket status</a></li>
 </ul>
-        <asp:TextBox ID="ticketIDTextBox" runat="server" placeholder="Enter ticket ID" Height="21px" Width="191px" CssClass="Header2"></asp:TextBox>
+        <asp:TextBox ID="ticketIDTextBox" runat="server" placeholder="Enter ticket ID" Height="21px" Width="191px" CssClass="TextBox23" ></asp:TextBox>
         <br />
         <asp:Button ID="Button1" runat="server" Text="Check ticket status" OnClick="Button1_Click" />
         <br />

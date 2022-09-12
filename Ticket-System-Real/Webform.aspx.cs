@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.UI;
-
 namespace Ticket_System_Real
 {
     public partial class Webform : System.Web.UI.Page

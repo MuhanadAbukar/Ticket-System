@@ -14,6 +14,7 @@ namespace Ticket_System_Real
         {
             if (!Page.IsPostBack)
             {
+                
                 SqlConnection conn = new SqlConnection(connectionString);
                 conn.Open();
                 var cmd = new SqlCommand("select ticketnr,tickettype,ticketdate from ticket where ticketstatus != 2 order by ticketdate", conn);
@@ -30,6 +31,11 @@ namespace Ticket_System_Real
             var btn = (Button)sender;
             string ticketNR = btn.CommandName;
             Response.Redirect("updateTicketREAL.aspx?TicketNR="+ ticketNR);
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

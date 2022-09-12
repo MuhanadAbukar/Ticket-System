@@ -16,13 +16,13 @@
     <form id="form1" runat="server">
        
             <p>Full navn:</p>
-            <asp:TextBox ID="TicketAuthor" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TicketAuthor" runat="server" CssClass="TextBox23" ></asp:TextBox>
             <br />
         <p>Epost:</p>
-            <asp:TextBox ID="TicketEmail" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TicketEmail" runat="server" CssClass="TextBox23" ></asp:TextBox>
             <br />
             <p>Beskrivelse av feilen</p>
-            <asp:TextBox ID="TicketDescription" runat="server" Height="173px" Width="345px" TextMode="MultiLine" onKeyPress="javascript:text_changed();" AutoPostBack="True"></asp:TextBox>
+            <asp:TextBox ID="TicketDescription" runat="server" CssClass="TextBox23" Height="173px" Width="345px" TextMode="MultiLine"  AutoPostBack="True" OnTextChanged="TicketDescription_TextChanged"></asp:TextBox>
             <asp:Label ID="Label1" runat="server"></asp:Label>
             <br />
             <p>Type problem</p>

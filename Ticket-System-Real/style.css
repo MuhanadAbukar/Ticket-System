@@ -86,3 +86,10 @@ li {
 .active {
     background-color: #04AA6D;
 }
+.TextBox23 {
+    width: 185px;
+    border: 2px solid rgb(173, 204, 204);
+    box-shadow: 0 0 27px rgb(204, 204, 204) inset;
+    transition: 500ms all ease;
+    padding: 3px 3px 3px 3px;
+}
