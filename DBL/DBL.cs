@@ -39,6 +39,7 @@ namespace DatabaseLayer
         {
 
             var conn = new SqlConnection(connectionString);
+            conn.Open();
             var cmd = new SqlCommand(query, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -46,6 +47,7 @@ namespace DatabaseLayer
         public SqlDataReader getReader(string query)
         {
             var conn = new SqlConnection(connectionString);
+            conn.Open();
             var cmd = new SqlCommand(query, conn);
             var reader = cmd.ExecuteReader();
             conn.Close();

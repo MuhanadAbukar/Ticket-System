@@ -22,13 +22,13 @@ namespace Ticket_System_Real
             {
                 var DBL = new DBL();
                 var query = "select * from ticket where ticketnr='" + ticketIDTextBox.Text + "'";
+                Button1.Text = query;
                 var reader = DBL.getReader(query);
                 DBL.bindReaderToGridView(reader, GridView1);
                 
                 if (GridView1.Rows.Count == 0)
                 {
 
-                    Button1.Text = "Invalid ticket ID.";
                     return;
                 }
                 Button1.Text = "Check ticket status";
@@ -51,7 +51,6 @@ namespace Ticket_System_Real
             }
             catch (Exception)
             {
-                Button1.Text = "Invalid ticket ID.";
             }
 
 
