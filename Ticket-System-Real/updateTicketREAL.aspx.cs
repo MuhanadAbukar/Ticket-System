@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-
+using DatabaseLayer;
 namespace Ticket_System_Real
 {
     public partial class updateTicketREAL : System.Web.UI.Page
@@ -18,14 +18,11 @@ namespace Ticket_System_Real
         {
             if (!Page.IsPostBack)
             {
-                SqlConnection conn = new SqlConnection(connectionString);
-                conn.Open();
-                var cmd = new SqlCommand("select * from ticket where ticketnr = '" + Request.QueryString["TicketNR"]+"'", conn);
-                var reader = cmd.ExecuteReader();
-                var dt = new DataTable();
-                dt.Load(reader);
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
+                var DBL = new DBL();
+                var query = "select * from ticket where ticketnr = '" + Request.QueryString["TicketNR"] + "'";
+                var reader = DBL.getReader(query);
+                DBL.bindReaderToGridView(reader, GridView1);
+                
             }
         }
     }

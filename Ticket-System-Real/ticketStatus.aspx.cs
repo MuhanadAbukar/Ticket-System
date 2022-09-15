@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-
+using DatabaseLayer;
 namespace Ticket_System_Real
 {
 
@@ -17,17 +17,14 @@ namespace Ticket_System_Real
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
+            
             try
             {
-
-                var cmd = new SqlCommand("select * from ticket where ticketnr='" + ticketIDTextBox.Text + "'", conn);
-                var reader = cmd.ExecuteReader();
-                var dt = new DataTable();
-                dt.Load(reader);
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
+                var DBL = new DBL();
+                var query = "select * from ticket where ticketnr='" + ticketIDTextBox.Text + "'";
+                var reader = DBL.getReader(query);
+                DBL.bindReaderToGridView(reader, GridView1);
+                
                 if (GridView1.Rows.Count == 0)
                 {
 

@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using DatabaseLayer;
 namespace Ticket_System_Real
 {
     public partial class updateTickets : System.Web.UI.Page
@@ -12,17 +12,15 @@ namespace Ticket_System_Real
         string connectionString = ConfigurationManager.ConnectionStrings["connstr"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+
             if (!Page.IsPostBack)
             {
+                var DBL = new DBL();
+                var query = "select ticketnr,tickettype,ticketdate from ticket where ticketstatus != 2 order by ticketdate";
+                var reader = DBL.getReader(query);
+                DBL.bindReaderToGridView(reader, GridView1);
                 
-                SqlConnection conn = new SqlConnection(connectionString);
-                conn.Open();
-                var cmd = new SqlCommand("select ticketnr,tickettype,ticketdate from ticket where ticketstatus != 2 order by ticketdate", conn);
-                var reader = cmd.ExecuteReader();
-                var dt = new DataTable();
-                dt.Load(reader);
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
             }
         }
 
