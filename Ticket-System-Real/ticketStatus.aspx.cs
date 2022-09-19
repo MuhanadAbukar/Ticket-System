@@ -24,7 +24,7 @@ namespace Ticket_System_Real
                 var query = "select * from ticket where ticketnr='" + ticketIDTextBox.Text + "'";
                 Button1.Text = query;
                 var reader = DBL.getReader(query);
-                DBL.bindReaderToGridView(reader, GridView1);
+                DBL.bindToGridView(reader, GridView1);
                 
                 if (GridView1.Rows.Count == 0)
                 {

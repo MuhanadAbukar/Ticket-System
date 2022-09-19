@@ -17,7 +17,7 @@
                     <asp:BoundField DataField="ticketdate" HeaderText="Date created" />
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:Button ID="btnSelect" runat="server" Text="View ticket" OnClick="Row_Selected"  CommandName='<%# Eval("ticketnr") %>'  />
+                            <asp:Button ID="btnSelect" runat="server" Text="View ticket" OnClick="Row_Selected"  CommandName='<%# Eval("ticketnr") %>' CommandArgument = '<%# Eval("ticketemail") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -32,6 +32,7 @@
                 <SortedDescendingHeaderStyle BackColor="#383838" />
             </asp:GridView>
         </div>
+        
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
 
     </form>

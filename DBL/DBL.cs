@@ -44,19 +44,20 @@ namespace DatabaseLayer
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-        public SqlDataReader getReader(string query)
+        public DataTable getReader(string query)
         {
             var conn = new SqlConnection(connectionString);
             conn.Open();
             var cmd = new SqlCommand(query, conn);
             var reader = cmd.ExecuteReader();
-            conn.Close();
-            return reader;
-        }
-        public void bindReaderToGridView(SqlDataReader reader, GridView gridview1)
-        {
             var dt = new DataTable();
             dt.Load(reader);
+            conn.Close();
+            return dt;
+            
+        }
+        public void bindToGridView(DataTable dt, GridView gridview1)
+        {
             gridview1.DataSource = dt;
             gridview1.DataBind();
         }
@@ -71,6 +72,14 @@ namespace DatabaseLayer
             smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
             smtp.Authenticate("glemmenvgsticket@gmail.com", "fmaonjofxuftpopf");
             smtp.Send(email);
+        }
+        public void editColumn(string key, string keyname, string values, string tablename)
+        {
+            var conn = new SqlConnection(connectionString);
+            conn.Open();
+            var cmd = new SqlCommand($"update {tablename} set {values} where {keyname} = {key}", conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
     }
 }
