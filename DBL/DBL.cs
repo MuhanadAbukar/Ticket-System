@@ -14,7 +14,8 @@ namespace DatabaseLayer
 {
     public class DBL
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["connstr"].ConnectionString;
+        static string connectionString = ConfigurationManager.ConnectionStrings["connstr"].ConnectionString;
+        SqlConnection conn = new SqlConnection(connectionString);
         public string generateTicket()
         {
             var ticketGenerator = new List<string>();
@@ -38,7 +39,6 @@ namespace DatabaseLayer
         public void writeToDB(string query)
         {
 
-            var conn = new SqlConnection(connectionString);
             conn.Open();
             var cmd = new SqlCommand(query, conn);
             cmd.ExecuteNonQuery();
@@ -46,7 +46,6 @@ namespace DatabaseLayer
         }
         public DataTable getReader(string query)
         {
-            var conn = new SqlConnection(connectionString);
             conn.Open();
             var cmd = new SqlCommand(query, conn);
             var reader = cmd.ExecuteReader();
@@ -75,7 +74,6 @@ namespace DatabaseLayer
         }
         public void editColumn(string key, string keyname, string values, string tablename)
         {
-            var conn = new SqlConnection(connectionString);
             conn.Open();
             var cmd = new SqlCommand($"update {tablename} set {values} where {keyname} = {key}", conn);
             cmd.ExecuteNonQuery();

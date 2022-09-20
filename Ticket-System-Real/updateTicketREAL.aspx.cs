@@ -22,24 +22,24 @@ namespace Ticket_System_Real
                 var query = "select * from ticket where ticketnr = '" + Request.QueryString["TicketNR"] + "'";
                 var reader = DBL.getReader(query);
                 DBL.bindToGridView(reader, GridView1);
-                
+
             }
         }
 
         protected void btnSelect_Click(object sender, EventArgs e)
         {
             var DBL = new DBL();
-            var chosen = DropDownList1.SelectedIndex;
+            var index = DropDownList1.SelectedIndex;
             var key = Request.QueryString["TicketNR"];
             var name = "ticketnr";
-            var values = $"ticketstatus = {chosen}";
+            var values = $"ticketstatus = {index}";
             var tablename = "ticket";
+            var email = Request.QueryString["email"];
+            string[] ticketmessages = { "started", "in progress.", "resolved." };
             DBL.editColumn($"'{key}'", name, values, tablename);
             Label1.CssClass = "TextBox23";
             Label1.Text = $"Successfully updated ticket status of ticket {key}";
-            var email = Request.QueryString["email"];
-            var x = new string[3] { "not started", "started", "finished" };
-            DBL.sendEmail(email, "Ticket status has been updated.", $"Your ticket {key} has been updated. \n Your ticket is "+ $"{x[chosen]}.");
+            DBL.sendEmail(email, "Ticket status has been updated.", $"Your ticket {key} has been updated. \n Status: "+ $"{ticketmessages[index]}.");
         }
     }
 }
